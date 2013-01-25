@@ -1,42 +1,47 @@
 <!doctype html>
 <!--[if lt IE 7 ]> <html lang="en" class="ie6"> <![endif]--> <!--[if IE 7 ]>    <html lang="en" class="ie7"> <![endif]--> <!--[if IE 8 ]>    <html lang="en" class="ie8"> <![endif]--> <!--[if IE 9 ]>    <html lang="en" class="ie9"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <title></title>
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-  <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="stylesheet" href="css/style.css?v=2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!--[if lt IE 9]>
-  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
-</head>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="stylesheet" href="css/style.css?v=2">
 
-<body>
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
 
-  <!-- Define your Handlebars here -->
+  <body>
 
-  <script type="text/x-handlebars">
-    <h1>Hello from Ember.js</h1>
-  </script>
+    <!-- Handlebars -->
 
-  <!-- Scripts -->
+    <script type="text/x-handlebars">
+      <h1>Hello {{content.name}}</h1>
+    </script>
 
-  <!-- The missing protocol means that it will match the current protocol, either http or https. If running locally, we use the local jQuery. -->
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-  <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.2.min.js"><\/script>')</script>
+    <!-- Scripts -->
 
-  <script src="js/libs/handlebars-1.0.rc.2.js"></script>
-  <script src="js/libs/ember-1.0.0-pre.4.js"></script>
-  <script src="js/app.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.2.min.js"><\/script>')</script>
 
-</body>
+    <!-- Scripts : Ember & Depedencies -->
+
+    <script src="js/libs/handlebars-1.0.rc.2.js"></script>
+    <script src="js/libs/ember-1.0.0-pre.4.js"></script>
+
+    <!-- Scripts : your app -->
+
+    <script src="js/app.js"></script>
+
+  </body>
 </html>
