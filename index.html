@@ -44,12 +44,27 @@
 
     <!-- Handlebars -->
 
-    <script type="text/x-handlebars" data-template-name="search">
-hi
+    <script type="text/x-handlebars" data-template-name="_search">
+      <div class="row-fluid">
+        <div class="span3">
+          {{ view App.SearchView }}
+        </div>
+      </div>
     </script>
 
-    <script type="text/x-handlebars">
+    <script type="text/x-handlebars" data-template-name="_stationListing">
+      <div class="span3">
+        <div class="well sidebar-nav">
+          <ul class="nav nav-list">
+            <li class="nav-header">Stations</li>
+            <!--<li class="active"><a href="#">Stacey Pullen</a></li>-->
+            <!--<li><a href="#">Carl Craig</a></li>-->
+          </ul>
+        </div><!--/.well -->
+      </div><!--/span-->
+    </script>
 
+    <script type="text/x-handlebars" data-template-name="_header">
       <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-inner">
           <div class="container-fluid">
@@ -76,65 +91,63 @@ hi
           </div>
         </div>
       </div>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="footer">
+      <footer>
+        <p>&copy; Company 2013</p>
+      </footer>
+    </script>
+
+    <script type="text/x-handlebars">
+
+      {{ partial "header" }}
 
       <div class="container-fluid">
+
+        {{ partial "search" }}
+
         <div class="row-fluid">
-          <div class="span3">
-            {{ view App.SearchView }}
-          </div>
-        </div>
-        <div class="row-fluid">
-          <div class="span3">
-            <div class="well sidebar-nav">
-              <ul class="nav nav-list">
-                <li class="nav-header">Artists</li>
-                <!--<li class="active"><a href="#">Stacey Pullen</a></li>-->
-                <!--<li><a href="#">Carl Craig</a></li>-->
-              </ul>
-            </div><!--/.well -->
-          </div><!--/span-->
-          <div class="span9">
-            <div class="hero-unit">
 
-              <h1>
-                No station selected.
-              </h1>
-              
-              <p>
-                Add an artist via the textbox.
-              </p>
+          {{ partial "stationListing" }}
 
-              <!--<div class="body">-->
-                <!--<h1>Hello {{content.name}}</h1>-->
-              <!--</div>-->
-
-              <!--<p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>-->
-              <!--<p><a class="btn btn-primary btn-large">Learn more &raquo;</a></p>-->
-            </div>
-          </div><!--/span-->
+          {{ outlet }}
 
         </div><!--/row-->
 
         <hr>
 
-        <footer>
-          <p>&copy; Company 2013</p>
-        </footer>
+        {{ partial "footer" }}
 
       </div><!--/.fluid-container-->
+
     </script>
 
-    <!-- Scripts -->
+    <!-- application/index : thanks code gen! -->
+    <script type="text/x-handlebars" data-template-name="index">
+        <div class="span9">
+          <div class="hero-unit">
+            <h1>
+              You don't have any stations.
+            </h1>
+            <p style="margin-top:40px;">
+              Add one via the textbox.
+            </p>
+          </div>
+        </div><!--/span-->
+    </script>
+
+    <!-- Libs -->
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.2.min.js"><\/script>')</script>
 
-    <!-- Scripts : Ember & Depedencies -->
+    <!-- Libs : Ember & Depedencies -->
 
     <script src="js/libs/handlebars-1.0.rc.2.js"></script>
     <script src="js/libs/ember-1.0.0-pre.4.js"></script>
 
-    <!-- Scripts : your app -->
+    <!-- Libs : your app -->
 
     <script src="js/app.js"></script>
 
