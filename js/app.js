@@ -1,16 +1,10 @@
 var App = Ember.Application.create();
 
-// Router
 App.Router.map(function() {
   this.resource('stations', function() {
     this.resource('index');
   });
 });
-
-//App.Store = DS.Store.create({
-  //revision: 11,
-  //adapter: DS.FixtureAdapter.create()
-//});
 
 App.IndexRoute = Ember.Route.extend({
   redirect: function() {
@@ -20,31 +14,18 @@ App.IndexRoute = Ember.Route.extend({
 
 App.StationsRoute = Ember.Route.extend({
   model: function() {
-    //return App.Table.find();
+    return App.Station.find();
     //return Em.A(['Carl','Stacey']);
-    return Em.A([]);
+    //return Em.A([]);
   }
 });
 
-App.ApplicationRoute = Ember.Route.extend({
-  //setupController: function() {
-    //this.controllerFor('stations').set('model', Em.A(['Carl','Stacey']) );
-  //}
-});
-
-//App.ApplicationRouter = Ember.Route.extend();
+//App.ApplicationRoute = Ember.Route.extend({});
 
 //App.searchController = Ember.Object.create({
   //searchText: '',
   //search: function(){
     //console.log('search for %@'.fmt( this.get('searchText') ));
-  //}
-//});
-
-//App.SearchView = Ember.TextField.extend(Ember.TargetActionSupport, {
-  //valueBinding: 'App.searchController.searchText',
-  //insertNewline: function() {
-    //this.triggerAction();
   //}
 //});
 
@@ -66,4 +47,23 @@ App.SearchView = Ember.TextField.extend({
   }
 });
 
-App.initialize();
+App.Store = DS.Store.extend({
+  revision: 11,
+  adapter: 'DS.FixtureAdapter'
+});
+
+App.Station = DS.Model.extend({
+  name: DS.attr('string')
+});
+
+App.Station.FIXTURES = [
+  {
+    'id': 1,
+    'name': 'Carl Craig'
+  },
+
+  {
+    'id': 2,
+    'name': 'Stacey Pullen'
+  }
+];

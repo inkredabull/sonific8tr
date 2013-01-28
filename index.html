@@ -59,7 +59,7 @@
             <ul class="nav nav-list">
               <li class="nav-header">Stations</li>
                {{#each controller}} 
-                <li><a href="#">{{this}}</a></li>
+                  <li><a href="#">{{this.name}}</a></li>
                {{else}}
                   <p>
                     You don't have any stations.
@@ -171,6 +171,7 @@
 
     <script src="js/libs/handlebars-1.0.rc.2.js"></script>
     <script src="js/libs/ember-1.0.0-pre.4.js"></script>
+    <script src="js/libs/ember-data.js"></script>
 
     <!-- Libs : your app -->
 
