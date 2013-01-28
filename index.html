@@ -44,6 +44,10 @@
 
     <!-- Handlebars -->
 
+    <script type="text/x-handlebars" data-template-name="search">
+hi
+    </script>
+
     <script type="text/x-handlebars">
 
       <div class="navbar navbar-inverse navbar-fixed-top">
@@ -76,6 +80,11 @@
       <div class="container-fluid">
         <div class="row-fluid">
           <div class="span3">
+            {{ view App.SearchView }}
+          </div>
+        </div>
+        <div class="row-fluid">
+          <div class="span3">
             <div class="well sidebar-nav">
               <ul class="nav nav-list">
                 <li class="nav-header">Artists</li>
@@ -90,6 +99,10 @@
               <h1>
                 No station selected.
               </h1>
+              
+              <p>
+                Add an artist via the textbox.
+              </p>
 
               <!--<div class="body">-->
                 <!--<h1>Hello {{content.name}}</h1>-->
@@ -105,7 +118,7 @@
         <hr>
 
         <footer>
-          <p>&copy; Company 2012</p>
+          <p>&copy; Company 2013</p>
         </footer>
 
       </div><!--/.fluid-container-->
