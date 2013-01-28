@@ -2,7 +2,10 @@ var App = Ember.Application.create();
 
 App.Router.map(function() {
   this.resource('stations', function() {
-    this.resource('station', { path: ':station_id' } );
+    this.resource('station', { path: ':station_id' }, function() {
+      //this.resource('track', { path: ':track_id' })
+      this.resource('track')
+    })
   });
 });
 
@@ -26,6 +29,12 @@ App.StationRoute = Ember.Route.extend({
   }
 });
 
+//App.TrackRoute = Ember.Route.extend({
+  //model: function(params) {
+    //return App.Track.find(params.track_id);
+  //}
+//});
+
 //App.ApplicationRoute = Ember.Route.extend({});
 
 //App.searchController = Ember.Object.create({
@@ -33,6 +42,19 @@ App.StationRoute = Ember.Route.extend({
   //search: function(){
     //console.log('search for %@'.fmt( this.get('searchText') ));
   //}
+//});
+
+
+//App.TrackView = Ember.View.extend({
+  //templateName: 'track',
+  //didInsertElement: function() {
+  //}
+//})
+
+// SoundCloud
+//$(document).ready(function(){
+  //App.iframeElement = $('iframe')[0];
+  //App.SCWidget = SC.Widget(App.iframeElement);
 //});
 
 App.SearchView = Ember.TextField.extend({
@@ -94,5 +116,23 @@ App.Track.FIXTURES = [
   },
 ];
 
+window.setTimeout(function(){
+    var widgetIframe = document.getElementById('sc-widget'),
+        widget = SC.Widget(widgetIframe);
 
-
+    widget.bind(SC.Widget.Events.READY, function() {
+      widget.bind(SC.Widget.Events.PLAY, function() {
+        // get information about currently playing sound
+        widget.getCurrentSound(function(currentSound) { 
+          //console.log('sound ' + currentSound.get('') + 'began to play');
+        });
+      });
+      // get current level of volume
+      widget.getVolume(function(volume) {
+        console.log('current volume value is ' + volume);
+      });
+      // set new volume level
+      widget.setVolume(50);
+      // get the value of the current position
+    });
+}, 1000);
