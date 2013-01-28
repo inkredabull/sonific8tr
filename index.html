@@ -52,16 +52,33 @@
       </div>
     </script>
 
-    <script type="text/x-handlebars" data-template-name="_stationListing">
-      <div class="span3">
-        <div class="well sidebar-nav">
-          <ul class="nav nav-list">
-            <li class="nav-header">Stations</li>
-            <!--<li class="active"><a href="#">Stacey Pullen</a></li>-->
-            <!--<li><a href="#">Carl Craig</a></li>-->
-          </ul>
-        </div><!--/.well -->
-      </div><!--/span-->
+    <script type="text/x-handlebars" data-template-name="stations">
+      <div class="row-fluid">
+        <div class="span4">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Stations</li>
+               {{#each controller}} 
+                <li><a href="#">{{this}}</a></li>
+               {{else}}
+                  <p>
+                    You don't have any stations.
+                    Add one via the textbox above.
+                  </p>
+               {{/each}}
+              <!--<li class="active"><a href="#">Stacey Pullen</a></li>-->
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
+        <div class="span4">
+          {{ outlet }}
+        </div><!--/span-->
+        <div class="span4">
+          <div class="well">
+            track placeholder
+          </div>
+        </div><!--/span-->
+      </div><!--/row-->
     </script>
 
     <script type="text/x-handlebars" data-template-name="_header">
@@ -74,8 +91,28 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </a>
-            <a class="brand" href="#">Project name</a>
             -->
+            <a class="brand" href="#">sonifc8tr</a>
+            <div class="nav-collapse collapse">
+              <!--
+              <p class="navbar-text pull-right">
+                Logged in as <a href="#" class="navbar-link">Username</a>
+        {{ outlet }}
+      </div><!--/row-->
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="_header">
+      <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class="container-fluid">
+            <!--
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </a>
+            -->
+            <a class="brand" href="#">sonifc8tr</a>
             <div class="nav-collapse collapse">
               <!--
               <p class="navbar-text pull-right">
@@ -93,7 +130,7 @@
       </div>
     </script>
 
-    <script type="text/x-handlebars" data-template-name="footer">
+    <script type="text/x-handlebars" data-template-name="_footer">
       <footer>
         <p>&copy; Company 2013</p>
       </footer>
@@ -107,13 +144,7 @@
 
         {{ partial "search" }}
 
-        <div class="row-fluid">
-
-          {{ partial "stationListing" }}
-
-          {{ outlet }}
-
-        </div><!--/row-->
+        {{ outlet }}
 
         <hr>
 
@@ -123,18 +154,12 @@
 
     </script>
 
-    <!-- application/index : thanks code gen! -->
-    <script type="text/x-handlebars" data-template-name="index">
-        <div class="span9">
-          <div class="hero-unit">
-            <h1>
-              You don't have any stations.
-            </h1>
-            <p style="margin-top:40px;">
-              Add one via the textbox.
-            </p>
-          </div>
-        </div><!--/span-->
+    <script type="text/x-handlebars" data-template-name="stations/index">
+      <div class="well">
+        <ul class="nav nav-list">
+          <li class="nav-header">Track Listing</li>
+        </ul>
+      </div>
     </script>
 
     <!-- Libs -->
