@@ -2,7 +2,7 @@ var App = Ember.Application.create();
 
 App.Router.map(function() {
   this.resource('stations', function() {
-    this.resource('station', { path: ':station_id' }, function() {
+    this.resource('listing', { path: ':listing_id' }, function() {
       //this.resource('track', { path: ':track_id' })
       this.resource('track')
     })
@@ -18,14 +18,13 @@ App.IndexRoute = Ember.Route.extend({
 App.StationsRoute = Ember.Route.extend({
   model: function() {
     return App.Station.find();
-    //return Em.A(['Carl','Stacey']);
     //return Em.A([]);
   }
 });
 
-App.StationRoute = Ember.Route.extend({
+App.ListingRoute = Ember.Route.extend({
   model: function(params) {
-    return App.Station.find(params.station_id);
+    return App.Listing.find(params.listing_id);
   }
 });
 
@@ -80,14 +79,14 @@ App.Store = DS.Store.extend({
   adapter: 'DS.FixtureAdapter'
 });
 
-App.Track = DS.Model.extend({
-  title: DS.attr('string'),
-  url: DS.attr('string')
-});
-
 App.Station = DS.Model.extend({
   name: DS.attr('string'),
-  tracks: DS.hasMany('App.Track')
+  tracks: DS.hasMany('App.Listing')
+});
+
+App.Listing = DS.Model.extend({
+  title: DS.attr('string'),
+  url: DS.attr('string')
 });
 
 App.Station.FIXTURES = [
@@ -103,7 +102,7 @@ App.Station.FIXTURES = [
   }
 ];
 
-App.Track.FIXTURES = [
+App.Listing.FIXTURES = [
   {
     id: 100,
     title: '20 Years Of Planet E Essential Mix',
