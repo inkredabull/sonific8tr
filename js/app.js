@@ -2,9 +2,9 @@ var App = Ember.Application.create();
 
 App.Router.map(function() {
   this.resource('stations', function() {
-    this.resource('listing', { path: ':listing_id' }, function() {
+    this.route('listing', { path: ':station_id/listing' }, function() {
       //this.resource('track', { path: ':track_id' })
-      this.resource('track')
+      //this.resource('track')
     })
   });
 });

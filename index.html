@@ -59,7 +59,7 @@
             <ul class="nav nav-list">
               <li class="nav-header">Stations</li>
                {{#each controller}} 
-                  <li>{{#linkTo listing this}}{{this.name}}{{/linkTo}}</li>
+                  <li>{{#linkTo stations.listing this}}{{this.name}}{{/linkTo}}</li>
                {{else}}
                   <p>
                     You don't have any stations.
@@ -147,7 +147,7 @@
 
     </script>
 
-    <script type="text/x-handlebars" data-template-name="listing">
+    <script type="text/x-handlebars" data-template-name="stations/listing">
         <div class="span4">
           <div class="well">
             <ul class="nav nav-list">
