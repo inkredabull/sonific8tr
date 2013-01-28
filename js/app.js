@@ -2,7 +2,7 @@ var App = Ember.Application.create();
 
 App.Router.map(function() {
   this.resource('stations', function() {
-    this.resource('index');
+    this.resource('station', { path: ':station_id' } );
   });
 });
 
@@ -17,6 +17,12 @@ App.StationsRoute = Ember.Route.extend({
     return App.Station.find();
     //return Em.A(['Carl','Stacey']);
     //return Em.A([]);
+  }
+});
+
+App.StationRoute = Ember.Route.extend({
+  model: function(params) {
+    return App.Station.find(params.station_id);
   }
 });
 
@@ -52,18 +58,41 @@ App.Store = DS.Store.extend({
   adapter: 'DS.FixtureAdapter'
 });
 
+App.Track = DS.Model.extend({
+  title: DS.attr('string'),
+  url: DS.attr('string')
+});
+
 App.Station = DS.Model.extend({
-  name: DS.attr('string')
+  name: DS.attr('string'),
+  tracks: DS.hasMany('App.Track')
 });
 
 App.Station.FIXTURES = [
   {
-    'id': 1,
-    'name': 'Carl Craig'
+    id: 1,
+    name: 'Carl Craig',
+    tracks: [100]
   },
-
   {
-    'id': 2,
-    'name': 'Stacey Pullen'
+    id: 2,
+    name: 'Stacey Pullen',
+    tracks: [200]
   }
 ];
+
+App.Track.FIXTURES = [
+  {
+    id: 100,
+    title: '20 Years Of Planet E Essential Mix',
+    url: 'https://soundcloud.com/r_co/carl-craig-20-years-of-planet'
+  },
+  {
+    id: 200,
+    title: 'Stacey Pullen Live',
+    url: 'https://soundcloud.com/staceypullen/stacey-pullen-live'
+  },
+];
+
+
+
