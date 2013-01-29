@@ -3,9 +3,7 @@ var App = Ember.Application.create();
 App.Router.map(function() {
   this.resource('stations', function() {
     this.resource('stations.tracks', { path: ':station_id/tracks' }, function() {
-      //this.route('playing', { path: ':track_id' })
       this.route('playing', { path: ':tracks_id' } );
-      //this.route('stations.tracks.playing');
     })
   });
 });
@@ -29,14 +27,6 @@ App.TracksRoute = Ember.Route.extend({
   }
 });
 
-//App.TracksRoute = Ember.Route.extend({
-  //model: function(params) {
-    //return App.Tracks.find(params.track_id);
-  //}
-//});
-
-//App.ApplicationRoute = Ember.Route.extend({});
-
 //App.searchController = Ember.Object.create({
   //searchText: '',
   //search: function(){
@@ -44,26 +34,8 @@ App.TracksRoute = Ember.Route.extend({
   //}
 //});
 
-
-//App.TracksView = Ember.View.extend({
-  //templateName: 'track',
-  //didInsertElement: function() {
-  //}
-//})
-
-// SoundCloud
-//$(document).ready(function(){
-  //App.iframeElement = $('iframe')[0];
-  //App.SCWidget = SC.Widget(App.iframeElement);
-//});
-
 App.SearchView = Ember.TextField.extend({
   valueBinding: 'App.SearchController.model',
-  //change: function(evt) {
-    //var value = this.get('value');
-    //console.log(value);
-    ////this.set('formBlurred', true);
-  //}
   insertNewline: function() {
     App.SearchController.setCurrent
     var value = this.get('value');
@@ -117,22 +89,22 @@ App.Tracks.FIXTURES = [
 ];
 
 window.setTimeout(function(){
-    //var widgetIframe = document.getElementById('sc-widget'),
-        //widget = SC.Widget(widgetIframe);
+    //var widget       = SC.Widget(widgetIframe);
+    //var newWidgetUrl = 'https://w.soundcloud.com/player/?url=https://api.soundcloud.com/staceypullen/stacey-pullen-live';
 
+    var newWidgetUrl = 'https://api.soundcloud.com/staceypullen/stacey-pullen-live';
+    var widgetIframe = document.getElementById('sc-widget');
+
+    //var iframe = document.querySelector('.iframe');
+    
+    widgetIframe.src = 'https://w.soundcloud.com/player/' + "?url=" + newWidgetUrl;
+    App.SCWidget = SC.Widget(iframe);
+    
     //widget.bind(SC.Widget.Events.READY, function() {
-      //widget.bind(SC.Widget.Events.PLAY, function() {
-        //// get information about currently playing sound
-        //widget.getCurrentSound(function(currentSound) { 
-          ////console.log('sound ' + currentSound.get('') + 'began to play');
-        //});
+      //// load new widget
+      //widget.bind(SC.Widget.Events.FINISH, function() {
+        //widget.load(newWidgetUrl, {});
       //});
-      //// get current level of volume
-      //widget.getVolume(function(volume) {
-        //console.log('current volume value is ' + volume);
-      //});
-      //// set new volume level
-      //widget.setVolume(50);
-      //// get the value of the current position
     //});
+
 }, 1000);
