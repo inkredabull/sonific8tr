@@ -89,22 +89,13 @@ App.Tracks.FIXTURES = [
 ];
 
 window.setTimeout(function(){
-    //var widget       = SC.Widget(widgetIframe);
-    //var newWidgetUrl = 'https://w.soundcloud.com/player/?url=https://api.soundcloud.com/staceypullen/stacey-pullen-live';
-
-    var newWidgetUrl = 'https://api.soundcloud.com/staceypullen/stacey-pullen-live';
+    var baseUrl = 'https://w.soundcloud.com/player/';
+    var pullenUrl = 'https://api.soundcloud.com/staceypullen/stacey-pullen-live';
+    var craigUrl = 'https://api.soundcloud.com/r_co/carl-craig-20-years-of-planet';
     var widgetIframe = document.getElementById('sc-widget');
 
-    //var iframe = document.querySelector('.iframe');
+    widgetIframe.src = baseUrl + "?url=" + pullenUrl;
+    App.SCWidget = SC.Widget(widgetIframe);
+    App.SCWidget.load(craigUrl);
     
-    widgetIframe.src = 'https://w.soundcloud.com/player/' + "?url=" + newWidgetUrl;
-    App.SCWidget = SC.Widget(iframe);
-    
-    //widget.bind(SC.Widget.Events.READY, function() {
-      //// load new widget
-      //widget.bind(SC.Widget.Events.FINISH, function() {
-        //widget.load(newWidgetUrl, {});
-      //});
-    //});
-
 }, 1000);
