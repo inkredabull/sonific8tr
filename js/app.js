@@ -34,6 +34,14 @@ App.TracksRoute = Ember.Route.extend({
   //}
 //});
 
+App.StationsTracksPlayingView = Ember.View.extend({
+  scBaseUrl: 'https://w.soundcloud.com/player/',
+  scTrackSourceUrl: 'https://api.soundcloud.com/r_co/carl-craig-20-years-of-planet',
+  scIframeSourceUrl: function() {
+    return this.scBaseUrl + '?url=' + this.scTrackSourceUrl;
+  }.property()
+});
+
 App.SearchView = Ember.TextField.extend({
   valueBinding: 'App.SearchController.model',
   insertNewline: function() {
@@ -79,23 +87,23 @@ App.Tracks.FIXTURES = [
   {
     id: 100,
     title: '20 Years Of Planet E Essential Mix',
-    url: 'https://soundcloud.com/r_co/carl-craig-20-years-of-planet'
+    url: 'https://api.soundcloud.com/r_co/carl-craig-20-years-of-planet'
   },
   {
     id: 200,
     title: 'Stacey Pullen Live',
-    url: 'https://soundcloud.com/staceypullen/stacey-pullen-live'
+    url: 'https://api.soundcloud.com/staceypullen/stacey-pullen-live'
   },
 ];
 
-window.setTimeout(function(){
-    var baseUrl = 'https://w.soundcloud.com/player/';
-    var pullenUrl = 'https://api.soundcloud.com/staceypullen/stacey-pullen-live';
-    var craigUrl = 'https://api.soundcloud.com/r_co/carl-craig-20-years-of-planet';
-    var widgetIframe = document.getElementById('sc-widget');
+//window.setTimeout(function(){
+    //var baseUrl = 'https://w.soundcloud.com/player/';
+    //var pullenUrl = 'https://api.soundcloud.com/staceypullen/stacey-pullen-live';
+    //var craigUrl = 'https://api.soundcloud.com/r_co/carl-craig-20-years-of-planet';
+    //var widgetIframe = document.getElementById('sc-widget');
 
-    widgetIframe.src = baseUrl + "?url=" + pullenUrl;
-    App.SCWidget = SC.Widget(widgetIframe);
-    App.SCWidget.load(craigUrl);
+    ////widgetIframe.src = baseUrl + "?url=" + pullenUrl;
+    ////App.SCWidget = SC.Widget(widgetIframe);
+    ////App.SCWidget.load(craigUrl);
     
-}, 1000);
+//}, 1000);
