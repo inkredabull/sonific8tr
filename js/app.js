@@ -36,7 +36,7 @@ App.TracksRoute = Ember.Route.extend({
 
 App.StationsTracksPlayingView = Ember.View.extend({
   scBaseUrl: 'https://w.soundcloud.com/player/',
-  scTrackSourceUrl: 'https://api.soundcloud.com/r_co/carl-craig-20-years-of-planet',
+  scTrackSourceUrlBinding: 'controller.model.url',
   scIframeSourceUrl: function() {
     return this.scBaseUrl + '?url=' + this.scTrackSourceUrl;
   }.property()
