@@ -40,22 +40,22 @@ App.StationsTracksPlayingView = Ember.View.extend({
 });
 
 App.SearchController = Ember.Object.create({
-  search: function(query){
-    alert(query);
-    //console.log('search for %@'.fmt( this.get('searchText') ));
+  addAndSearch: function(query){
+    console.log( query );
   }
 });
 
 App.SearchView = Ember.TextField.extend({
-  valueBinding: 'App.SearchController.model',
   didInsertElement: function() {
     this.$().focus();
   },
+  clearTextBox: function(){
+    this.$().val(''); 
+  },
   insertNewline: function() {
-    var value = this.get('value');
-    if (value) {
-      App.get('SearchController').search(value);
-    }
+    var artist = this.$().val();
+    App.get('SearchController').addAndSearch( artist );
+    this.clearTextBox();
   }
 });
 
