@@ -59,7 +59,7 @@
             <ul class="nav nav-list">
               <li class="nav-header">Stations</li>
                {{#each controller}} 
-                  <li>{{#linkTo stations.tracks this}}{{this.name}}{{/linkTo}}</li>
+                  <li class="">{{#linkTo stations.tracks this}}{{this.name}}{{/linkTo}}</li>
                {{else}}
                   <p>
                     You don't have any stations.
@@ -153,7 +153,8 @@
             <ul class="nav nav-list">
               <li class="nav-header">Tracks for {{ name }} </li>
               {{#each model.tracks}}
-                <li><a href="#">{{title}}</a></li>
+                <!--<li><a href="#">{{title}}</a></li>-->
+                <li class="">{{#linkTo stations.tracks.playing this}}{{this.title}}{{/linkTo}}</li>
               {{/each}}
             </ul>
           </div>
