@@ -4,7 +4,8 @@ App.Router.map(function() {
   this.resource('stations', function() {
     this.resource('stations.tracks', { path: ':station_id/tracks' }, function() {
       //this.route('playing', { path: ':track_id' })
-      this.route('stations.tracks.playing', { path: ':tracks_id' } );
+      this.route('playing', { path: ':tracks_id' } );
+      //this.route('stations.tracks.playing');
     })
   });
 });
