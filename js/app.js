@@ -2,9 +2,9 @@ var App = Ember.Application.create();
 
 App.Router.map(function() {
   this.resource('stations', function() {
-    this.route('listing', { path: ':station_id/listing' }, function() {
-      //this.resource('track', { path: ':track_id' })
-      //this.resource('track')
+    this.resource('stations.tracks', { path: ':station_id/tracks' }, function() {
+      //this.route('playing', { path: ':track_id' })
+      this.route('stations.tracks.playing', { path: ':tracks_id' } );
     })
   });
 });
@@ -22,15 +22,15 @@ App.StationsRoute = Ember.Route.extend({
   }
 });
 
-App.ListingRoute = Ember.Route.extend({
+App.TracksRoute = Ember.Route.extend({
   model: function(params) {
-    return App.Listing.find(params.listing_id);
+    return App.Tracks.find(params.listing_id);
   }
 });
 
-//App.TrackRoute = Ember.Route.extend({
+//App.TracksRoute = Ember.Route.extend({
   //model: function(params) {
-    //return App.Track.find(params.track_id);
+    //return App.Tracks.find(params.track_id);
   //}
 //});
 
@@ -44,7 +44,7 @@ App.ListingRoute = Ember.Route.extend({
 //});
 
 
-//App.TrackView = Ember.View.extend({
+//App.TracksView = Ember.View.extend({
   //templateName: 'track',
   //didInsertElement: function() {
   //}
@@ -81,10 +81,10 @@ App.Store = DS.Store.extend({
 
 App.Station = DS.Model.extend({
   name: DS.attr('string'),
-  tracks: DS.hasMany('App.Listing')
+  tracks: DS.hasMany('App.Tracks')
 });
 
-App.Listing = DS.Model.extend({
+App.Tracks = DS.Model.extend({
   title: DS.attr('string'),
   url: DS.attr('string')
 });
@@ -102,7 +102,7 @@ App.Station.FIXTURES = [
   }
 ];
 
-App.Listing.FIXTURES = [
+App.Tracks.FIXTURES = [
   {
     id: 100,
     title: '20 Years Of Planet E Essential Mix',

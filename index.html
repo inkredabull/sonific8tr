@@ -59,7 +59,7 @@
             <ul class="nav nav-list">
               <li class="nav-header">Stations</li>
                {{#each controller}} 
-                  <li>{{#linkTo stations.listing this}}{{this.name}}{{/linkTo}}</li>
+                  <li>{{#linkTo stations.tracks this}}{{this.name}}{{/linkTo}}</li>
                {{else}}
                   <p>
                     You don't have any stations.
@@ -147,11 +147,11 @@
 
     </script>
 
-    <script type="text/x-handlebars" data-template-name="stations/listing">
+    <script type="text/x-handlebars" data-template-name="stations/tracks">
         <div class="span4">
           <div class="well">
             <ul class="nav nav-list">
-              <li class="nav-header">Track Listing for {{ name }} </li>
+              <li class="nav-header">Tracks for {{ name }} </li>
               {{#each model.tracks}}
                 <li><a href="#">{{title}}</a></li>
               {{/each}}
@@ -161,9 +161,10 @@
         {{ outlet }}
     </script>
 
-    <script type="text/x-handlebars" data-template-name="track">
+    <script type="text/x-handlebars" data-template-name="playing">
         <div class="span4">
           <div class="well">
+            <span class="header">Current Track</span>
             <!--<iframe id="sc-widget" src="https://w.soundcloud.com/player/?url=https://api.soundcloud.com/staceypullen/stacey-pullen-live" width="100%" height="465" scrolling="no" frameborder="no"></iframe>-->
           </div>
         </div><!--/span-->
