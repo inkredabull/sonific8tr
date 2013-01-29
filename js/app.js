@@ -27,12 +27,9 @@ App.TracksRoute = Ember.Route.extend({
   }
 });
 
-//App.searchController = Ember.Object.create({
-  //searchText: '',
-  //search: function(){
-    //console.log('search for %@'.fmt( this.get('searchText') ));
-  //}
-//});
+App.StationsIndexView = Ember.View.extend({
+  isActive: true
+});
 
 App.StationsTracksPlayingView = Ember.View.extend({
   scBaseUrl: 'https://w.soundcloud.com/player/',
@@ -42,16 +39,23 @@ App.StationsTracksPlayingView = Ember.View.extend({
   }.property()
 });
 
+App.SearchController = Ember.Object.create({
+  search: function(query){
+    alert(query);
+    //console.log('search for %@'.fmt( this.get('searchText') ));
+  }
+});
+
 App.SearchView = Ember.TextField.extend({
   valueBinding: 'App.SearchController.model',
+  didInsertElement: function() {
+    this.$().focus();
+  },
   insertNewline: function() {
-    App.SearchController.setCurrent
     var value = this.get('value');
-    console.log(value);
-    //debugger;
-    //if (value) {
-      //App.productsController.search(value);
-    //}
+    if (value) {
+      App.get('SearchController').search(value);
+    }
   }
 });
 
