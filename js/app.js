@@ -17,8 +17,11 @@ App.IndexRoute = Ember.Route.extend({
 App.StationsRoute = Ember.Route.extend({
   model: function() {
     return App.Station.find();
-    //return Em.A([]);
-  }
+    //return Ember.A([]);
+  },
+  //setupController: function(controller, model) {
+    //controller.set('content', model);
+  //}
 });
 
 App.TracksRoute = Ember.Route.extend({
@@ -41,7 +44,7 @@ App.StationsTracksPlayingView = Ember.View.extend({
 
 App.StationsController = Ember.ArrayController.extend({
   addAndSearch: function(artist){
-    console.log(artist);
+    App.Station.createRecord({ name: artist, tracks: [] });
   }
 });
 
@@ -62,7 +65,6 @@ App.SearchView = Ember.TextField.extend({
 App.SearchController = Ember.Controller.extend({
   needs: 'stations',
   search: function(query) {
-    //var query = this.get('query');
     this.get('controllers.stations').addAndSearch(query);
   }
 });
