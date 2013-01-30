@@ -8,6 +8,7 @@ App.Router.map(function() {
       this.route('playing', { path: ':tracks_id' } );
     })
   });
+  this.route('profile');
 });
 
 App.IndexRoute = Ember.Route.extend({
