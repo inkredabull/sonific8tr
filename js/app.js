@@ -39,23 +39,28 @@ App.StationsTracksPlayingView = Ember.View.extend({
   }.property()
 });
 
-App.SearchController = Ember.Object.create({
-  addAndSearch: function(query){
-    console.log( query );
+App.StationsController = Ember.ArrayController.extend({
+  addAndSearch: function(artist){
+    console.log(artist);
   }
 });
 
-App.SearchView = Ember.TextField.extend({
-  didInsertElement: function() {
-    this.$().focus();
-  },
-  clearTextBox: function(){
-    this.$().val(''); 
-  },
-  insertNewline: function() {
-    var artist = this.$().val();
-    App.get('SearchController').addAndSearch( artist );
-    this.clearTextBox();
+App.SearchController = Ember.Controller.extend({
+  needs: 'stations',
+  //search: function() {
+    //var query = this.get('query');     
+    //this.get('controllers.food').search(query);
+  //},
+  //didInsertElement: function() {
+    //this.$().focus();
+  //},
+  //clearTextBox: function(){
+    //this.$().val(''); 
+  //},
+  search: function() {
+    var query = this.get('query');
+    this.get('controllers.stations').addAndSearch(query);
+    ////this.clearTextBox();
   }
 });
 
@@ -99,15 +104,3 @@ App.Tracks.FIXTURES = [
     url: 'https://api.soundcloud.com/staceypullen/stacey-pullen-live'
   },
 ];
-
-//window.setTimeout(function(){
-    //var baseUrl = 'https://w.soundcloud.com/player/';
-    //var pullenUrl = 'https://api.soundcloud.com/staceypullen/stacey-pullen-live';
-    //var craigUrl = 'https://api.soundcloud.com/r_co/carl-craig-20-years-of-planet';
-    //var widgetIframe = document.getElementById('sc-widget');
-
-    ////widgetIframe.src = baseUrl + "?url=" + pullenUrl;
-    ////App.SCWidget = SC.Widget(widgetIframe);
-    ////App.SCWidget.load(craigUrl);
-    
-//}, 1000);

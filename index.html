@@ -44,14 +44,6 @@
 
     <!-- Handlebars -->
 
-    <script type="text/x-handlebars" data-template-name="_search">
-      <div class="row-fluid">
-        <div class="span3">
-          {{ view App.SearchView }}
-        </div>
-      </div>
-    </script>
-
     <script type="text/x-handlebars" data-template-name="stations">
       <div class="row-fluid">
         <div class="span4">
@@ -129,13 +121,23 @@
       </footer>
     </script>
 
+    <script type="text/x-handlebars" data-template-name="search">
+      <form {{action "search" on="submit"}}>
+        {{view Ember.TextField valueBinding="query"}}
+      </form>
+    </script>
+
     <script type="text/x-handlebars">
 
       {{ partial "header" }}
 
       <div class="container-fluid">
 
-        {{ partial "search" }}
+        <div class="row-fluid">
+          <div class="span3">
+            {{ render "search" }}
+          </div>
+        </div>
 
         {{ outlet }}
 
