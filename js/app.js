@@ -27,7 +27,6 @@ App.StationsTracksRoute = Ember.Route.extend({
     return App.Station.find(param['station_id']);
   },
   setupController: function(controller, model) {
-    debugger;
     controller.set('content', model);
   }
 });
@@ -38,7 +37,7 @@ App.StationsTracksPlayingRoute = Ember.Route.extend({
     setTimeout(function(){
       widget = SC.Widget( document.getElementById('sc-widget') );
       widget.play();
-    },1500); // cheating for programmatic click :-)
+    },2000); // cheating for programmatic click :-)
   }
 });
 
@@ -46,13 +45,7 @@ App.StationsTracksPlayingRoute = Ember.Route.extend({
 
 App.StationsController = Ember.ArrayController.extend({
   addAndSearch: function(artist){
-    var station = App.Station.createRecord({ id: 3, name: 'Justin Martin' });
-    var track = App.Tracks.createRecord({
-      id: 300,
-      title: 'Jungle Mix',
-      url: 'https://api.soundcloud.com/justin-martin-music/justin-martin-jungle-mix'
-    });
-    station.get('tracks').pushObject(track); // there has to be a better way...
+    App.addArtist(artist);
   }
 });
 
@@ -87,8 +80,6 @@ App.SearchView = Ember.TextField.extend({
   }
 });
 
-// Ember Data
-
 App.Store = DS.Store.extend({
   revision: 11,
   adapter: 'DS.FixtureAdapter'
@@ -103,6 +94,19 @@ App.Tracks = DS.Model.extend({
   title: DS.attr('string'),
   url: DS.attr('string')
 });
+
+//
+//
+//
+//
+// App ends here.... 
+//
+//
+//
+//
+//
+
+// Ember Data
 
 App.Station.FIXTURES = [
   {
@@ -149,3 +153,14 @@ App.Tracks.FIXTURES = [
     url: 'https://api.soundcloud.com/staceypullen/sets/bfr007-circus-act-ep'
   }
 ];
+
+// fakes the search and return with tracks
+App.addArtist = function(artist) {
+  var station = App.Station.createRecord({ id: 3, name: 'Justin Martin' });
+  var track = App.Tracks.createRecord({
+    id: 300,
+    title: 'Jungle Mix',
+    url: 'https://api.soundcloud.com/justin-martin-music/justin-martin-jungle-mix'
+  });
+  station.get('tracks').pushObject(track); // there has to be a better way...
+}
