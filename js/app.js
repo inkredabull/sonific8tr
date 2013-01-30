@@ -17,9 +17,16 @@ App.IndexRoute = Ember.Route.extend({
 App.StationsRoute = Ember.Route.extend({
   model: function() {
     return App.Station.find();
-  },
+  }
+});
+
+App.StationsTracksPlayingRoute = Ember.Route.extend({
   setupController: function(controller, model) {
     controller.set('content', model);
+    setTimeout(function(){
+      widget = SC.Widget( document.getElementById('sc-widget') );
+      widget.play();
+    },1500); // cheating for programmatic click :-)
   }
 });
 
@@ -34,6 +41,9 @@ App.StationsIndexView = Ember.View.extend({
 });
 
 App.StationsTracksPlayingView = Ember.View.extend({
+  //didInsertElement: function(){
+    //debugger;
+  //},
   scBaseUrl: 'https://w.soundcloud.com/player/',
   scTrackSourceUrlBinding: 'controller.model.url',
   scIframeSourceUrl: function() {
@@ -83,19 +93,18 @@ App.Tracks = DS.Model.extend({
   url: DS.attr('string')
 });
 
-App.Station.FIXTURES = [];
-//App.Station.FIXTURES = [
-  //{
-    //id: 1,
-    //name: 'Carl Craig',
-    //tracks: [100]
-  //},
-  //{
-    //id: 2,
-    //name: 'Stacey Pullen',
-    //tracks: [200]
-  //}
-//];
+App.Station.FIXTURES = [
+  {
+    id: 1,
+    name: 'Carl Craig',
+    tracks: [100,101,102]
+  },
+  {
+    id: 2,
+    name: 'Stacey Pullen',
+    tracks: [200,201,202]
+  }
+];
 
 App.Tracks.FIXTURES = [
   {
@@ -104,8 +113,28 @@ App.Tracks.FIXTURES = [
     url: 'https://api.soundcloud.com/r_co/carl-craig-20-years-of-planet'
   },
   {
+    id: 101,
+    title: 'Live @ Mixmag Live',
+    url: 'https://api.soundcloud.com/planetedetroit/carl-craig-live-mixmag-live-19'
+  },
+  {
+    id: 102,
+    title: 'FACT mix 345',
+    url: 'https://api.soundcloud.com/selftitledmag/carl-craig-fact-mix-345'
+  },
+  {
     id: 200,
     title: 'Stacey Pullen Live',
     url: 'https://api.soundcloud.com/staceypullen/stacey-pullen-live'
   },
+  {
+    id: 201,
+    title: 'Get Up (Original)',
+    url: 'https://soundcloud.com/staceypullen/stacey-pullen-get-up-original'
+  },
+  {
+    id: 202,
+    title: 'Circus Act',
+    url: 'https://soundcloud.com/staceypullen/sets/bfr007-circus-act-ep'
+  }
 ];
