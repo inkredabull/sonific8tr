@@ -1,5 +1,7 @@
 var App = Ember.Application.create();
 
+// Routes
+
 App.Router.map(function() {
   this.resource('stations', function() {
     this.resource('stations.tracks', { path: ':station_id/tracks' }, function() {
@@ -20,6 +22,16 @@ App.StationsRoute = Ember.Route.extend({
   }
 });
 
+App.StationsTracksRoute = Ember.Route.extend({
+  model: function(param) {
+    return App.Station.find(param['station_id']);
+  },
+  setupController: function(controller, model) {
+    debugger;
+    controller.set('content', model);
+  }
+});
+
 App.StationsTracksPlayingRoute = Ember.Route.extend({
   setupController: function(controller, model) {
     controller.set('content', model);
@@ -30,31 +42,35 @@ App.StationsTracksPlayingRoute = Ember.Route.extend({
   }
 });
 
-App.TracksRoute = Ember.Route.extend({
-  model: function(params) {
-    return App.Tracks.find(params.listing_id);
+// Controllers
+
+App.StationsController = Ember.ArrayController.extend({
+  addAndSearch: function(artist){
+    var station = App.Station.createRecord({ id: 3, name: 'Justin Martin' });
+    var track = App.Tracks.createRecord({
+      id: 300,
+      title: 'Jungle Mix',
+      url: 'https://api.soundcloud.com/justin-martin-music/justin-martin-jungle-mix'
+    });
+    station.get('tracks').pushObject(track); // there has to be a better way...
   }
 });
 
-App.StationsIndexView = Ember.View.extend({
-  isActive: true
+App.SearchController = Ember.Controller.extend({
+  needs: 'stations',
+  search: function(query) {
+    this.get('controllers.stations').addAndSearch(query);
+  }
 });
 
+// Views
+
 App.StationsTracksPlayingView = Ember.View.extend({
-  //didInsertElement: function(){
-    //debugger;
-  //},
   scBaseUrl: 'https://w.soundcloud.com/player/',
   scTrackSourceUrlBinding: 'controller.model.url',
   scIframeSourceUrl: function() {
     return this.scBaseUrl + '?url=' + this.scTrackSourceUrl;
   }.property()
-});
-
-App.StationsController = Ember.ArrayController.extend({
-  addAndSearch: function(artist){
-    App.Station.createRecord({ name: artist, tracks: [] });
-  }
 });
 
 App.SearchView = Ember.TextField.extend({
@@ -71,12 +87,7 @@ App.SearchView = Ember.TextField.extend({
   }
 });
 
-App.SearchController = Ember.Controller.extend({
-  needs: 'stations',
-  search: function(query) {
-    this.get('controllers.stations').addAndSearch(query);
-  }
-});
+// Ember Data
 
 App.Store = DS.Store.extend({
   revision: 11,
@@ -130,11 +141,11 @@ App.Tracks.FIXTURES = [
   {
     id: 201,
     title: 'Get Up (Original)',
-    url: 'https://soundcloud.com/staceypullen/stacey-pullen-get-up-original'
+    url: 'https://api.soundcloud.com/staceypullen/stacey-pullen-get-up-original'
   },
   {
     id: 202,
     title: 'Circus Act',
-    url: 'https://soundcloud.com/staceypullen/sets/bfr007-circus-act-ep'
+    url: 'https://api.soundcloud.com/staceypullen/sets/bfr007-circus-act-ep'
   }
 ];
