@@ -45,22 +45,25 @@ App.StationsController = Ember.ArrayController.extend({
   }
 });
 
+App.SearchView = Ember.TextField.extend({
+  valueBinding: 'query',
+  didInsertElement: function() {
+    this.$().focus();
+  },
+  clearTextBox: function(){
+    this.$().val('');
+  },
+  change: function(e) {
+    this.controller.search( this.query );
+    this.clearTextBox();
+  }
+});
+
 App.SearchController = Ember.Controller.extend({
   needs: 'stations',
-  //search: function() {
-    //var query = this.get('query');     
-    //this.get('controllers.food').search(query);
-  //},
-  //didInsertElement: function() {
-    //this.$().focus();
-  //},
-  //clearTextBox: function(){
-    //this.$().val(''); 
-  //},
-  search: function() {
-    var query = this.get('query');
+  search: function(query) {
+    //var query = this.get('query');
     this.get('controllers.stations').addAndSearch(query);
-    ////this.clearTextBox();
   }
 });
 
