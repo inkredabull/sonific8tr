@@ -17,11 +17,10 @@ App.IndexRoute = Ember.Route.extend({
 App.StationsRoute = Ember.Route.extend({
   model: function() {
     return App.Station.find();
-    //return Ember.A([]);
   },
-  //setupController: function(controller, model) {
-    //controller.set('content', model);
-  //}
+  setupController: function(controller, model) {
+    controller.set('content', model);
+  }
 });
 
 App.TracksRoute = Ember.Route.extend({
@@ -84,18 +83,19 @@ App.Tracks = DS.Model.extend({
   url: DS.attr('string')
 });
 
-App.Station.FIXTURES = [
-  {
-    id: 1,
-    name: 'Carl Craig',
-    tracks: [100]
-  },
-  {
-    id: 2,
-    name: 'Stacey Pullen',
-    tracks: [200]
-  }
-];
+App.Station.FIXTURES = [];
+//App.Station.FIXTURES = [
+  //{
+    //id: 1,
+    //name: 'Carl Craig',
+    //tracks: [100]
+  //},
+  //{
+    //id: 2,
+    //name: 'Stacey Pullen',
+    //tracks: [200]
+  //}
+//];
 
 App.Tracks.FIXTURES = [
   {
