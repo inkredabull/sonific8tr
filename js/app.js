@@ -163,5 +163,5 @@ App.addArtist = function(artist) {
     title: 'Jungle Mix',
     url: 'https://api.soundcloud.com/justin-martin-music/justin-martin-jungle-mix'
   });
-  station.get('tracks').pushObject(track); // there has to be a better way...
+  station.get('tracks').pushObject(track); 
 }
