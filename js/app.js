@@ -38,7 +38,7 @@ App.StationsTracksPlayingRoute = Ember.Route.extend({
     setTimeout(function(){
       widget = SC.Widget( document.getElementById('sc-widget') );
       widget.play();
-    },2000); // cheating for programmatic click :-)
+    },1000); // cheating for programmatic click :-)
   }
 });
 
