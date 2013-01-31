@@ -27,12 +27,26 @@
 
     <!-- Handlebars -->
 
+    <script type="text/x-handlebars">
+
+      {{ partial "header" }}
+
+      <div class="container-fluid">
+
+        {{ outlet }}
+
+        <hr>
+
+        {{ partial "footer" }}
+
+      </div><!--/.fluid-container-->
+
+    </script>
+
     <script type="text/x-handlebars" data-template-name="stations">
       <div class="row-fluid">
-        <div class="span1">
+        <div class="span3">
           Add a station:
-        </div>
-        <div class="span2">
           {{ render "search" }}
         </div>
       </div>
@@ -50,7 +64,6 @@
                     Add one via the textbox above.
                   </p>
                {{/each}}
-              <!--<li class="active"><a href="#">Stacey Pullen</a></li>-->
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
@@ -82,28 +95,11 @@
       </footer>
     </script>
 
-    <script type="text/x-handlebars">
-
-      {{ partial "header" }}
-
-      <div class="container-fluid">
-
-        {{ outlet }}
-
-        <hr>
-
-        {{ partial "footer" }}
-
-      </div><!--/.fluid-container-->
-
-    </script>
-
     <script type="text/x-handlebars" data-template-name="profile">
        Put a great form here for a user to do a profile update.
     </script>
 
     <script type="text/x-handlebars" data-template-name="stations/tracks">
-
         <div class="span4">
           <div class="well">
             <ul class="nav nav-list">
